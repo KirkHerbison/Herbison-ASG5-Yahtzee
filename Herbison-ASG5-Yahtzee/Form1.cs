@@ -17,10 +17,13 @@ namespace Herbison_ASG5_Yahtzee
         Die die3 = new Die();
         Die die4 = new Die();
         Die die5 = new Die();
+        Hand hand = new Hand();
+        List<String> holdList = new List<String>();
         public Form1()
         {
             InitializeComponent();
             resetDiceImages();
+            resetHoldList();
         }
 
         private void resetDiceImages()
@@ -34,36 +37,44 @@ namespace Herbison_ASG5_Yahtzee
 
         private void displayDiceRoll()
         {
-            pictureBoxDie1.Image = imageListDice.Images[die1.Value];
-            pictureBoxDie2.Image = imageListDice.Images[die2.Value];
-            pictureBoxDie3.Image = imageListDice.Images[die3.Value];
-            pictureBoxDie4.Image = imageListDice.Images[die4.Value];
-            pictureBoxDie5.Image = imageListDice.Images[die5.Value];
+            int[] dieArray = hand.getDieArray();
+            pictureBoxDie1.Image = imageListDice.Images[dieArray[0]];
+            pictureBoxDie2.Image = imageListDice.Images[dieArray[1]];
+            pictureBoxDie3.Image = imageListDice.Images[dieArray[2]];
+            pictureBoxDie4.Image = imageListDice.Images[dieArray[3]];
+            pictureBoxDie5.Image = imageListDice.Images[dieArray[4]];
         }
 
-        private void displayDiceValue()
+        private void resetHoldList()
         {
-            labelDie1Hold.Text = die1.Value.ToString();
-            labelDie2Hold.Text = die2.Value.ToString();
-            labelDie3Hold.Text = die3.Value.ToString();
-            labelDie4Hold.Text = die4.Value.ToString();
-            labelDie5Hold.Text = die5.Value.ToString();
+            holdList.Clear();
+            holdList.Add("");
+            holdList.Add("");
+            holdList.Add("");
+            holdList.Add("");
+            holdList.Add("");
+            labelDie1Hold.Text = holdList[0];
+            labelDie2Hold.Text = holdList[1];
+            labelDie3Hold.Text = holdList[2];
+            labelDie4Hold.Text = holdList[3];
+            labelDie5Hold.Text = holdList[4];
         }
 
-        private void rollDice()
+        private void displayValue()
         {
-            die1.roll();
-            die2.roll();
-            die3.roll();
-            die4.roll();
-            die5.roll();
+            int[] dieArray = hand.getDieArray();
+            label1.Text = dieArray[0].ToString();
+            label2.Text = dieArray[1].ToString();
+            label3.Text = dieArray[2].ToString();
+            label4.Text = dieArray[3].ToString();
+            label5.Text = dieArray[4].ToString();
         }
 
         private void buttonRoll_Click(object sender, EventArgs e)
         {
-            rollDice();
+            hand.rollDice(holdList);
             displayDiceRoll();
-            displayDiceValue();
+            displayValue();
         }
 
         private void pictureBoxDie1_Click(object sender, EventArgs e)
@@ -72,6 +83,7 @@ namespace Herbison_ASG5_Yahtzee
                 labelDie1Hold.Text = "Hold";
             else
                 labelDie1Hold.Text = "";
+            holdList[0] = labelDie1Hold.Text;
         }
 
         private void pictureBoxDie2_Click(object sender, EventArgs e)
@@ -80,6 +92,7 @@ namespace Herbison_ASG5_Yahtzee
                 labelDie2Hold.Text = "Hold";
             else
                 labelDie2Hold.Text = "";
+            holdList[1] = labelDie2Hold.Text;
         }
 
         private void pictureBoxDie3_Click(object sender, EventArgs e)
@@ -88,6 +101,7 @@ namespace Herbison_ASG5_Yahtzee
                 labelDie3Hold.Text = "Hold";
             else
                 labelDie3Hold.Text = "";
+            holdList[2] = labelDie3Hold.Text;
         }
 
         private void pictureBoxDie4_Click(object sender, EventArgs e)
@@ -96,6 +110,7 @@ namespace Herbison_ASG5_Yahtzee
                 labelDie4Hold.Text = "Hold";
             else
                 labelDie4Hold.Text = "";
+            holdList[3] = labelDie4Hold.Text;
         }
 
         private void pictureBoxDie5_Click(object sender, EventArgs e)
@@ -104,6 +119,7 @@ namespace Herbison_ASG5_Yahtzee
                 labelDie5Hold.Text = "Hold";
             else
                 labelDie5Hold.Text = "";
+            holdList[4] = labelDie5Hold.Text;
         }
     }
 }
