@@ -12,18 +12,32 @@ namespace Herbison_ASG5_Yahtzee
 {
     public partial class Form1 : Form
     {
-        Die die1 = new Die();
-        Die die2 = new Die();
-        Die die3 = new Die();
-        Die die4 = new Die();
-        Die die5 = new Die();
         Hand hand = new Hand();
+        Score score = new Score();
         List<String> holdList = new List<String>();
         public Form1()
         {
             InitializeComponent();
+            resetGame();
+        }
+
+        private void resetGame()
+        {
+            score = new Score();
+            displayScore();
             resetDiceImages();
             resetHoldList();
+            resetTextBoxes();
+            disableSetButtons();
+            buttonRoll.Enabled = true;
+        }
+
+        private void displayScore()
+        {
+            labelUpperTotal.Text = score.UpperTotal.ToString();
+            labelBonus.Text = score.Bonus.ToString();
+            labelLowerTotal.Text = score.LowerTotal.ToString();
+            labelGameTotal.Text = score.GameTotal.ToString();
         }
 
         private void resetDiceImages()
@@ -70,10 +84,75 @@ namespace Herbison_ASG5_Yahtzee
             label5.Text = dieArray[4].ToString();
         }
 
+        private void enableSetButtons()
+        {
+            if (textBoxScoreOnes.Text == "")
+                buttonSetOnes.Enabled = true;
+            if (textBoxScoreTwos.Text == "")
+                buttonSetTwos.Enabled = true;
+            if (textBoxScoreThrees.Text == "")
+                buttonSetThrees.Enabled = true;
+            if (textBoxScoreFours.Text == "")
+                buttonSetFours.Enabled = true;
+            if(textBoxScoreFives.Text == "")
+                buttonSetFives.Enabled = true;
+            if (textBoxScoreSixes.Text == "")
+                buttonSetSixes.Enabled = true;
+            if (textBoxScoreThreeOfAKind.Text == "")
+                buttonSetThreeOfAKind.Enabled = true;
+            if (textBoxScoreFourOfAKind.Text == "")
+                buttonSetFourOfAKind.Enabled = true;
+            if (textBoxScoreFullHouse.Text == "")
+                buttonSetFullHouse.Enabled = true;
+            if (textBoxScoreSmallStraight.Text == "")
+                buttonSetSmallStraight.Enabled = true;
+            if (textBoxScoreLargeStraight.Text == "")
+                buttonSetLargeStraight.Enabled = true;
+            if(textBoxScoreYahtzee.Text == "")
+                buttonSetYahtzee.Enabled = true;
+            if (textBoxScoreChance.Text == "")
+                buttonSetChance.Enabled = true;
+        }
+
+        private void disableSetButtons()
+        {
+            buttonSetOnes.Enabled = false;
+            buttonSetTwos.Enabled = false;
+            buttonSetThrees.Enabled = false;
+            buttonSetFours.Enabled = false;
+            buttonSetFives.Enabled = false;
+            buttonSetSixes.Enabled = false;
+            buttonSetThreeOfAKind.Enabled = false;
+            buttonSetFourOfAKind.Enabled = false;
+            buttonSetFullHouse.Enabled = false;
+            buttonSetSmallStraight.Enabled = false;
+            buttonSetLargeStraight.Enabled = false;
+            buttonSetYahtzee.Enabled = false;
+            buttonSetChance.Enabled = false;
+        }
+
+        private void resetTextBoxes()
+        {
+            textBoxScoreOnes.Text = "";
+            textBoxScoreTwos.Text = "";
+            textBoxScoreThrees.Text = "";
+            textBoxScoreFours.Text = "";
+            textBoxScoreFives.Text = "";
+            textBoxScoreSixes.Text = "";
+            textBoxScoreThreeOfAKind.Text = "";
+            textBoxScoreFourOfAKind.Text = "";
+            textBoxScoreFullHouse.Text = "";
+            textBoxScoreSmallStraight.Text = "";
+            textBoxScoreLargeStraight.Text = "";
+            textBoxScoreYahtzee.Text = "";
+            textBoxScoreChance.Text = "";
+        }
+
         private void buttonRoll_Click(object sender, EventArgs e)
         {
             hand.rollDice(holdList);
             displayDiceRoll();
+            enableSetButtons();
             displayValue();
         }
 
@@ -120,6 +199,110 @@ namespace Herbison_ASG5_Yahtzee
             else
                 labelDie5Hold.Text = "";
             holdList[4] = labelDie5Hold.Text;
+        }
+
+        private void buttonSetOnes_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreOnes = score.scoreOnes(dieArray);
+            textBoxScoreOnes.Text = scoreOnes.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonResetGame_Click(object sender, EventArgs e)
+        {
+            resetGame();
+        }
+
+        private void buttonSetTwos_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreTwos = score.scoreTwos(dieArray);
+            textBoxScoreTwos.Text = scoreTwos.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetThrees_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreThrees = score.scoreThrees(dieArray);
+            textBoxScoreThrees.Text = scoreThrees.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetFours_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreFours = score.scoreFours(dieArray);
+            textBoxScoreFours.Text = scoreFours.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetFives_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreFives = score.scoreFives(dieArray);
+            textBoxScoreFives.Text = scoreFives.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetSixes_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreSixes = score.scoreSixes(dieArray);
+            textBoxScoreSixes.Text = scoreSixes.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetChance_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreChance = score.scoreChance(dieArray);
+            textBoxScoreChance.Text = scoreChance.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetYahtzee_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreYhatzee = score.scoreYahtzee(dieArray);
+            textBoxScoreYahtzee.Text = scoreYhatzee.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
+        }
+
+        private void buttonSetLargeStraight_Click(object sender, EventArgs e)
+        {
+            int[] dieArray = hand.getDieArray();
+            int scoreLargeStraight = score.scoreLargeStraight(dieArray);
+            textBoxScoreLargeStraight.Text = scoreLargeStraight.ToString();
+            buttonRoll.Enabled = true;
+            disableSetButtons();
+            displayScore();
+            resetHoldList();
         }
     }
 }
