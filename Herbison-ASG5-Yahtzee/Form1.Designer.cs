@@ -95,6 +95,7 @@
             this.labelBonus = new System.Windows.Forms.Label();
             this.labelLowerTotal = new System.Windows.Forms.Label();
             this.labelGameTotal = new System.Windows.Forms.Label();
+            this.labelGameOver = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDie1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDie2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDie3)).BeginInit();
@@ -367,6 +368,7 @@
             this.buttonSetSmallStraight.TabIndex = 26;
             this.buttonSetSmallStraight.Text = "Set";
             this.buttonSetSmallStraight.UseVisualStyleBackColor = true;
+            this.buttonSetSmallStraight.Click += new System.EventHandler(this.buttonSetSmallStraight_Click);
             // 
             // buttonSetFullHouse
             // 
@@ -376,6 +378,7 @@
             this.buttonSetFullHouse.TabIndex = 25;
             this.buttonSetFullHouse.Text = "Set";
             this.buttonSetFullHouse.UseVisualStyleBackColor = true;
+            this.buttonSetFullHouse.Click += new System.EventHandler(this.buttonSetFullHouse_Click);
             // 
             // buttonSetFourOfAKind
             // 
@@ -385,6 +388,7 @@
             this.buttonSetFourOfAKind.TabIndex = 24;
             this.buttonSetFourOfAKind.Text = "Set";
             this.buttonSetFourOfAKind.UseVisualStyleBackColor = true;
+            this.buttonSetFourOfAKind.Click += new System.EventHandler(this.buttonSetFourOfAKind_Click);
             // 
             // buttonSetThreeOfAKind
             // 
@@ -394,6 +398,7 @@
             this.buttonSetThreeOfAKind.TabIndex = 23;
             this.buttonSetThreeOfAKind.Text = "Set";
             this.buttonSetThreeOfAKind.UseVisualStyleBackColor = true;
+            this.buttonSetThreeOfAKind.Click += new System.EventHandler(this.buttonSetThreeOfAKind_Click);
             // 
             // buttonSetChance
             // 
@@ -698,11 +703,21 @@
             this.labelGameTotal.TabIndex = 63;
             this.labelGameTotal.Text = "0";
             // 
+            // labelGameOver
+            // 
+            this.labelGameOver.AutoSize = true;
+            this.labelGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGameOver.Location = new System.Drawing.Point(115, 835);
+            this.labelGameOver.Name = "labelGameOver";
+            this.labelGameOver.Size = new System.Drawing.Size(0, 55);
+            this.labelGameOver.TabIndex = 64;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1641, 983);
+            this.Controls.Add(this.labelGameOver);
             this.Controls.Add(this.labelGameTotal);
             this.Controls.Add(this.labelLowerTotal);
             this.Controls.Add(this.labelBonus);
@@ -846,6 +861,7 @@
         private System.Windows.Forms.Label labelBonus;
         private System.Windows.Forms.Label labelLowerTotal;
         private System.Windows.Forms.Label labelGameTotal;
+        private System.Windows.Forms.Label labelGameOver;
     }
 }
 
